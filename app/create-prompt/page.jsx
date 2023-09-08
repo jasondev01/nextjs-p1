@@ -18,6 +18,7 @@ const CreatePrompt = () => {
     const createPrompt = async (e) => {
         e.preventDefault();
         setSubmitting(true);
+        const sanitizedTag = post.tag.replace(/[^A-Za-z]/g, '');
 
         try {
             const response = await fetch('/api/prompt/new', {
@@ -25,7 +26,7 @@ const CreatePrompt = () => {
                 body: JSON.stringify({
                     prompt: post.prompt,
                     userId: session?.user.id,
-                    tag: post.tag
+                    tag: sanitizedTag
                 })
             })
 
