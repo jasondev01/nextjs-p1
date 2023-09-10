@@ -27,15 +27,18 @@ const Feed = () => {
     const [ searchTimeout, setSearchTimeout ] = useState(null);
     const [ searchedResults, setSearchedResults ] = useState([]);
 
-
-    const fetchPost = async () => {
-        const response = await fetch('/api/prompt');
-        const data = await response.json()
-        setPosts(data);
-    }
-
     useEffect(() => {
-        fetchPost();
+        const fetchPost = async () => {
+            try {
+                const response = await fetch('/api/prompt');
+                const data = await response.json()
+                setPosts(data);
+            } catch (error) {
+                console.log(error)
+                fetchPost()
+            }
+        }
+        fetchPost()
     }, [])
 
     const filterPrompts = (searchtext) => {
