@@ -31,11 +31,11 @@ const Feed = () => {
         const fetchPost = async () => {
             try {
                 const response = await fetch('/api/prompt');
+                if(!response) fetchPost()
                 const data = await response.json()
                 setPosts(data);
             } catch (error) {
                 console.log(error)
-                fetchPost()
             }
         }
         fetchPost()
