@@ -4,22 +4,28 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { signIn, signOut, useSession, getProviders } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 
 const Nav = () => {
-    const { data: session } = useSession();
-
-    const [ providers, setProviders ] = useState(null);
-    const [ toggleDropdown, setToggleDropdown ] = useState(false);
+    const { data: session } = useSession()
+    const [ providers, setProviders ] = useState(null)
+    const [ toggleDropdown, setToggleDropdown ] = useState(false)
+    const router = useRouter()
 
     useEffect(() => {
         const setUpProviders = async() => {
-            const response = await getProviders();
+            const response = await getProviders()
 
-            setProviders(response);
+            setProviders(response)
         }
 
-        setUpProviders();
+        setUpProviders()
     }, [])
+
+    const handleLogout = () => {
+        router.push('/')
+        signOut()
+    }
 
     return (
         <nav className='flex-between w-full mb-16 pt-3'>
@@ -28,18 +34,17 @@ const Nav = () => {
                     src="/assets/images/logo.svg" 
                     width={30}
                     height={30}
-                    alt='Promptopia Logo'
-                    className='object-contain'
+                    alt='Website Logo'
+                    className='object-contain hue-rotate-[270deg]'
                 />
                 <p className='logo_text'>
-                    Promptopia
+                    Prompt Master
                 </p>
             </Link>
 
             {/* Mobile Navigation */}
             <div className='sm:flex hidden'>
-                {
-                    session?.user 
+                {session?.user 
                     ? 
                     <div className='flex gap-3 md:gap-5'>
                         <Link href='/create-prompt' className='black_btn'>
@@ -48,7 +53,7 @@ const Nav = () => {
                         <button 
                             type='button' 
                             className='outline_btn'
-                            onClick={signOut}
+                            onClick={handleLogout}
                         >
                             Sign Out
                         </button>
@@ -65,8 +70,7 @@ const Nav = () => {
                     </div>
                     : 
                     <>
-                        {
-                            providers && 
+                        {providers && (
                             Object.values(providers).map((provider) => (
                                 <button
                                     type='button'
@@ -76,16 +80,14 @@ const Nav = () => {
                                 >
                                     Sign In
                                 </button>
-                            ))
-                        }
+                        )))}
                     </>
                 }
             </div>
 
             {/* Mobile Navigation */}
             <div className='sm:hidden flex relative'>
-                {
-                    session?.user 
+                {session?.user 
                     ? 
                     <div className='flex'>
                         <Image 
@@ -97,8 +99,7 @@ const Nav = () => {
                             onClick={() => setToggleDropdown(prev => !prev)}
                         />
 
-                        {
-                            toggleDropdown && 
+                        {toggleDropdown && (
                             <div className='dropdown'>
                                 <Link 
                                     href='/profile' 
@@ -122,12 +123,11 @@ const Nav = () => {
                                     Sign Out
                                 </button>
                             </div>
-                        }
+                        )}
                     </div>
                     :
                     <>
-                        {
-                            providers && 
+                        {providers && (
                             Object.values(providers).map((provider) => (
                                 <button
                                     type='button'
@@ -137,8 +137,7 @@ const Nav = () => {
                                 >
                                     Sign In
                                 </button>
-                            ))
-                        }
+                        )))}
                     </>
                 }
             </div>

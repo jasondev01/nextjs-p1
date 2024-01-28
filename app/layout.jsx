@@ -1,16 +1,16 @@
-import "@styles/globals.css"
+import "./globals.css"
 import Nav from '@components/Nav'
 import Provider from '@components/Provider'
 
 export const metadata = {
-    title: 'Promptopia',
-    desscription: 'Discover & Share AI Prompts'
+    title: 'Prompt Master',
+    desscription: 'Discover & Share Amazing Prompts for AIs'
 }
 
 const RootLayout = ({children}) => {
     return (
         <html lang="en">
-            <body>
+            <body className="bg-slate-800 bg-opacity-20">
                 <Provider>
                     <div className="main">
                         <div className="gradient" />
