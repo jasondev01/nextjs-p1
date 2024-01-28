@@ -4,13 +4,13 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Form from '@components/Form'
 
-export default function UpdatePrompt({ post }) {
+export default function UpdatePrompt({ data }) {
     const router = useRouter()
 
     const [ submitting, setSubmitting ] = useState(false)
     const [ post, setPost ] = useState({
-        prompt: post.prompt || '',
-        tag: post.tag || '',
+        prompt: data.prompt || '',
+        tag: data.tag || '',
     })
 
     const updatePrompt = async (e) => {
