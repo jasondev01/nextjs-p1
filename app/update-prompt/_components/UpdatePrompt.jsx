@@ -3,7 +3,6 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Form from '@components/Form'
-import { baseUrl } from "@utils/constant"
 
 export default function UpdatePrompt({ data }) {
     const router = useRouter()
@@ -21,7 +20,7 @@ export default function UpdatePrompt({ data }) {
         if (!data._id) return alert('Prompt ID not found')
 
         try {
-                const response = await fetch(`${baseUrl}/api/prompt/${data._id}`, {
+                const response = await fetch(`/api/prompt/${data._id}`, {
                 method: 'PATCH',
                 body: JSON.stringify({
                     prompt: post.prompt,
