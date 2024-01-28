@@ -7,6 +7,8 @@ import Form from '@components/Form'
 export default function UpdatePrompt({ data }) {
     const router = useRouter()
 
+    console.log({data})
+
     const [ submitting, setSubmitting ] = useState(false)
     const [ post, setPost ] = useState({
         prompt: data.prompt || '',
@@ -17,10 +19,10 @@ export default function UpdatePrompt({ data }) {
         e.preventDefault()
         setSubmitting(true)
 
-        if (!data.id) return alert('Prompt ID not found')
+        if (!data._id) return alert('Prompt ID not found')
 
         try {
-                const response = await fetch(`${baseUrl}/api/prompt/${data.id}`, {
+                const response = await fetch(`${baseUrl}/api/prompt/${data._id}`, {
                 method: 'PATCH',
                 body: JSON.stringify({
                     prompt: post.prompt,
