@@ -1,9 +1,9 @@
-import mongoose from "mongoose";
+import mongoose from "mongoose"
 
 let isConnected = false // track connection
 
 export const connectToDB = async () => {
-    mongoose.set('strictQuery', true);
+    mongoose.set('strictQuery', true)
 
     if (isConnected) {
         console.log('MongoDB is already connected')
@@ -16,7 +16,7 @@ export const connectToDB = async () => {
             useUnifiedTopology: true
         })
 
-        isConnected = true;
+        isConnected = true
         console.log('MongoDB is connected')
     } catch (error) {
         console.log('Error Connection', error)
