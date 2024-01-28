@@ -6,6 +6,6 @@ export default async function EditPrompt({ params }) {
     const data = await response.json()
 
     return (
-        <UpdatePrompt post={data}/>
+        <UpdatePrompt data={data}/>
     )
 }
