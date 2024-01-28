@@ -17,7 +17,7 @@ export default function UpdatePrompt({ data }) {
         e.preventDefault()
         setSubmitting(true)
 
-        if (!promptId) return alert('Prompt ID not found')
+        if (!data.id) return alert('Prompt ID not found')
 
         try {
                 const response = await fetch(`${baseUrl}/api/prompt/${data.id}`, {
