@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import Form from '@components/Form'
+import { baseUrl } from "@utils/constant"
 
 const EditPrompt = () => {
     const [ submitting, setSubmitting ] = useState(false);
@@ -16,7 +17,7 @@ const EditPrompt = () => {
 
     useEffect(() => {
         const getPromptDetails = async () => {
-            const response = await fetch(`/api/prompt/${promptId}`)
+            const response = await fetch(`${baseUrl}/api/prompt/${promptId}`)
             const data = await response.json()
             setPost({
                 prompt: data.prompt,
@@ -33,7 +34,7 @@ const EditPrompt = () => {
         if (!promptId) return alert('Prompt ID not found')
 
         try {
-                const response = await fetch(`/api/prompt/${promptId}`, {
+                const response = await fetch(`${baseUrl}/api/prompt/${promptId}`, {
                 method: 'PATCH',
                 body: JSON.stringify({
                     prompt: post.prompt,
