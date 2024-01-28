@@ -7,7 +7,7 @@ export default async function Home() {
     const response = await fetch(`${baseUrl}/api/prompt`, {
         method: 'GET',
         next: {
-            revalidate: 0
+            revalidate: 1
         }
     })
 
