@@ -3,11 +3,10 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Form from '@components/Form'
+import { baseUrl } from "@utils/constant"
 
 export default function UpdatePrompt({ data }) {
     const router = useRouter()
-
-    console.log({data})
 
     const [ submitting, setSubmitting ] = useState(false)
     const [ post, setPost ] = useState({
