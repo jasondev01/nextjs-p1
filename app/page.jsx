@@ -6,9 +6,6 @@ export default async function Home() {
 
     const response = await fetch(`${baseUrl}/api/prompt`, {
         method: 'GET',
-        next: {
-            revalidate: 5
-        }
     })
 
     const data = await response.json() || []
@@ -29,3 +26,5 @@ export default async function Home() {
         </section>
     )
 }
+
+export const revalidate = 0
