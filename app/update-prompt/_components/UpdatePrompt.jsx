@@ -20,7 +20,7 @@ export default function UpdatePrompt({ data }) {
         if (!data._id) return alert('Prompt ID not found')
 
         try {
-                const response = await fetch(`/api/prompt/${data._id}`, {
+            const response = await fetch(`/api/prompt/${data._id}`, {
                 method: 'PATCH',
                 body: JSON.stringify({
                     prompt: post.prompt,

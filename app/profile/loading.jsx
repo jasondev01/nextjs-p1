@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/image"
 
 const Loading = () => {
   return (
@@ -11,7 +11,7 @@ const Loading = () => {
         className='object-contain'
       />
     </div>
-  );
-};
+  )
+}
 
-export default Loading;
+export default Loading

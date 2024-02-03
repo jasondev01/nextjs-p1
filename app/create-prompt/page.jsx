@@ -7,18 +7,18 @@ import { useRouter } from "next/navigation"
 import Form from '@components/Form'
 
 const CreatePrompt = () => {
-    const [ submitting, setSubmitting ] = useState(false);
+    const [ submitting, setSubmitting ] = useState(false)
     const [ post, setPost ] = useState({
         prompt: '',
         tag: '',
     })
-    const router = useRouter();
-    const { data: session } = useSession();
+    const router = useRouter()
+    const { data: session } = useSession()
 
     const createPrompt = async (e) => {
-        e.preventDefault();
-        setSubmitting(true);
-        const sanitizedTag = post.tag.replace(/[^A-Za-z]/g, '');
+        e.preventDefault()
+        setSubmitting(true)
+        const sanitizedTag = post.tag.replace(/[^A-Za-z]/g, '')
 
         try {
             const response = await fetch('/api/prompt/new', {
@@ -31,7 +31,7 @@ const CreatePrompt = () => {
             })
 
             if (response.ok) {
-                router.push('/');
+                router.push('/')
             }
         } catch(error) {
             console.log('error', error)

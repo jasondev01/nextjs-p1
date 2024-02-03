@@ -4,21 +4,21 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'
 
-import Profile from '@components/Profile';
+import Profile from '@components/Profile'
 
 const MyProfile = () => {
     const [ posts, setPosts ] = useState([])
-    const { data: session } = useSession();
-    const router = useRouter();
+    const { data: session } = useSession()
+    const router = useRouter()
 
     useEffect(() => {
         const fetchPost = async () => {
-            const response = await fetch(`/api/users/${session?.user.id}/posts`);
+            const response = await fetch(`/api/users/${session?.user.id}/posts`)
             const data = await response.json()
-            setPosts(data);
+            setPosts(data)
         }
         
-        if (session?.user.id) fetchPost();
+        if (session?.user.id) fetchPost()
     }, [session?.user.id])
 
     const handleEdit = (post) => {
@@ -34,9 +34,9 @@ const MyProfile = () => {
                     method: 'DELETE'
                 })
 
-                const filteredPosts = posts.filter(post => post._id !== post._id);
+                const filteredPosts = posts.filter(post => post._id !== post._id)
 
-                setPosts(filteredPosts);
+                setPosts(filteredPosts)
             } catch (error) {
                 console.log('error', error)
             }

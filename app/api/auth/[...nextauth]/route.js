@@ -1,8 +1,8 @@
-import NextAuth from "next-auth";
+import NextAuth from "next-auth"
 import GoogleProvider from 'next-auth/providers/google'
 
-import { connectToDB } from "@utils/database";
-import User from '@models/user';
+import { connectToDB } from "@utils/database"
+import User from '@models/user'
 
 const handler = NextAuth({
     providers: [
@@ -17,13 +17,13 @@ const handler = NextAuth({
                 email: session.user.email
             })
     
-            session.user.id = sessionUser._id.toString();
-            return session;
+            session.user.id = sessionUser._id.toString()
+            return session
         },
     
         async signIn({ profile }) {
             try {
-                await connectToDB();
+                await connectToDB()
     
                 // check if a user alread exists
                 const userExists = await User.findOne({
@@ -39,7 +39,7 @@ const handler = NextAuth({
                     })
                 }
     
-                return true;
+                return true
             } catch (error) {
                 console.log("Error", error)
             }
@@ -47,4 +47,4 @@ const handler = NextAuth({
     },
 })
 
-export { handler as GET, handler as POST };
+export { handler as GET, handler as POST }
